@@ -14,16 +14,16 @@ def clean_data(df: pd.DataFrame) -> pd.DataFrame:
     # --- Missing Values ---
     # Age
     df['Age_missing'] = df['Age'].isnull().astype(int)
-    df['Age'].fillna(df['Age'].median(), inplace=True)
+    df['Age'] = df['Age'].fillna(df['Age'].median())
 
     # Cabin → Deck
     df['Deck'] = df['Cabin'].str[0].fillna('U')
 
     # Embarked
-    df['Embarked'].fillna(df['Embarked'].mode()[0], inplace=True)
+    df['Embarked'] = df['Embarked'].fillna(df['Embarked'].mode()[0])
 
     # Fare
-    df['Fare'].fillna(df['Fare'].median(), inplace=True)
+    df['Fare'] = df['Fare'].fillna(df['Fare'].median())
 
     # --- Outliers ---
     # Cap Fare at 99th percentile
